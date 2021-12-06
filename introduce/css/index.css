@@ -102,6 +102,7 @@ ol,ul{
     width: 95%;
     margin: 0 auto;
     padding-top:50px;
+    display: grid;
 }
 
 /* allProject */
@@ -109,7 +110,6 @@ ol,ul{
     clear:both;
     position: relative;
     padding-left:24px;
-    margin:0 auto;
 }
 .projectHeader h2{
     height:28px;
@@ -261,5 +261,26 @@ fieldset{
     width:100%;
     height:100%;
     border-radius: 50%;
+    object-fit:cover;
 }
 
+/*** studyproject ***/
+.studyProject h3{
+    height:30px;
+    color:#4a4e57;
+    font-size:20px;
+}
+.studyContents{
+    display:flex;
+}
+.studyContent{
+    border:2px solid #c2c2c2;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    margin:0 10px;
+    padding:0 20px;
+}
+.studyContentName a:hover{
+    color:black;
+    font-weight: bold;
+}
