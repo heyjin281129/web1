@@ -22,10 +22,10 @@ function paintToDo(newTodo){
     const span = document.createElement("span");
     span.innerText = newTodo.text; // text만 저장될 수 있도록 변경
     const button = document.createElement("button");
-    button.innerText = "X";
+    button.innerText = "❌";
     button.addEventListener("click", deleteToDo);
-    li.appendChild(span);
     li.appendChild(button);
+    li.appendChild(span);
     toDoList.appendChild(li);
 }
 
