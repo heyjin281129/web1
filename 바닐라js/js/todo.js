@@ -23,6 +23,8 @@ function paintToDo(newTodo){
     span.innerText = newTodo.text; // text만 저장될 수 있도록 변경
     const button = document.createElement("button");
     button.innerText = "❌";
+    button.classList.add("btn");
+    button.classList.add("btn-outline-danger");
     button.addEventListener("click", deleteToDo);
     li.appendChild(button);
     li.appendChild(span);
