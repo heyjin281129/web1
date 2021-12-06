@@ -41,11 +41,14 @@ img{
     appearance: none;
     background: none;
     border: none;
-    color: white;
     font-size: 36px;
     border-bottom: 3px solid rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
 }
+#login-form input::placeholder{
+    color: white;
+}
+
 .user{
     color:white;
 }
