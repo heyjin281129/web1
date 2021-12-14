@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포트폴리오</title>
+    <!-- Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- favicon -->
+    <link rel="icon" href="img/미니타운.jpg" />
+  </head>
+
+  <body>
+    <div class="topBar">
+      <h1 class="topLogo"><a href="index.html">포트폴리오</a></h1>
+      <div class="topBarLeft">
+        <div class="topAllMenu" id="topAllMenu">
+          <a href="#topAllMenu">
+            <span class="TopIcon"><!--아이콘--></span>
+            <span>복구중</span>
+          </a>
+        </div>
+      </div>
+      <div class="topBarRight">
+        <div class="topUser">
+          <span class="topUserImg"><img src="img/미니타운.jpg" /></span>
+          <span class="topHiddenName">김혜진</span>
+        </div>
+      </div>
+    </div>
+    <div class="contents" id="contents">
+      <div class="projectHeader">
+        <h2>2021.05 - today</h2>
+        <div class="search">
+          <fieldset>
+            <legend class="acchidden">search</legend>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="프로젝트명 검색"
+            />
+            <button type="button" class="btn btn-outline-dark">검색</button>
+          </fieldset>
+        </div>
+        <div class="filter">
+          <fielset class="language">
+            <legend class="acchidden">filter</legend>
+            <span>
+              <input
+                type="radio"
+                name="filter"
+                value="all"
+                id="all"
+                data-selector="genre"
+                data-name="All"
+                obj="P_MAIN"
+                checked="checked"
+              />
+              <label for="all">#전체</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter"
+                value="1"
+                id="hashtag_1"
+                data-selector="hashtage"
+                data-name="javascript"
+                obj="P_MAIN"
+              />
+              <label for="hashtag_1">#Javascript</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter"
+                value="2"
+                id="hashtag_2"
+                data-selector="hashtage"
+                data-name="react"
+                obj="P_MAIN"
+              />
+              <label for="hashtag_2">#React</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter"
+                value="3"
+                id="hashtag_3"
+                data-selector="hashtage"
+                data-name="react"
+                obj="P_MAIN"
+              />
+              <label for="hashtag_3">#Spring</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter"
+                value="4"
+                id="hashtag_4"
+                data-selector="hashtage"
+                data-name="react"
+                obj="P_MAIN"
+              />
+              <label for="hashtag_4">#NodeJs</label>
+            </span>
+          </fielset>
+        </div>
+      </div>
+      <div class="subProject">
+        <h3 id="subProjectName">프로젝트</h3>
+        <ul>
+          <li>
+            <div class="project">
+              <span class="projectImg">
+                <img src="img/projectImg/luxryTrendLogo.png" />
+              </span>
+              <div class="projectContents">
+                <span class="projectName">
+                  <a href="https://heyjin281129.github.io/webstudy/luxry_trend/"
+                    ><span>luxry_trend</span></a
+                  >
+                </span>
+                <span class="projectPeriod">명품중고거래사이트</span>
+                <span class="projectLanguage">
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/html.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/css.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/javascript.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/spring.png"
+                  /></span>
+                </span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="project">
+              <span class="projectImg">
+                <img src="img/projectImg/loadLogo.png" />
+              </span>
+              <div class="projectContents">
+                <span class="projectName">
+                  <a href="https://heyjin281129.github.io/webstudy/RG"
+                    ><span>로드</span></a
+                  >
+                </span>
+                <span class="projectPeriod">어서와 전남 광주는 처음이지?</span>
+                <span class="projectLanguage">
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/html.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/css.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/javascript.png"
+                  /></span>
+                  <span class="projectIcon"
+                    ><img src="img/projectIcon/nodeJs.png"
+                  /></span>
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="studyProject">
+        <h3 id="studyProjectName">공부</h3>
+        <ul class="studyContents">
+          <li>
+            <div class="studyContent">
+              <span class="studyContentName">
+                <a
+                  href="https://heyjin281129.github.io/webstudy/바닐라JS로_크롬앱_만들기"
+                  ><span>바닐라 JS로 크롬앱 만들기</span></a
+                >
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="studyContent">
+              <span class="studyContentName">
+                <a
+                  href="https://heyjin281129.github.io/webstudy/바닐라JS로_그림판_만들기"
+                  ><span>바닐라JS로 그림판 만들기</span></a
+                >
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
