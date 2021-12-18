@@ -1,0 +1,315 @@
+<html>
+  <head>
+    <title>테트리스</title>
+    <!-- jquery CDN : https://code.jquery.com/ -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .block {
+        width: 25px;
+        height: 25px;
+        background-color: hsl(75, 100%, 40%);
+      }
+      .space {
+        width: 25px;
+        height: 25px;
+        background-color: white;
+      }
+    </style>
+    <script>
+      const ALL_BLOCK = new Array();
+      let BLOCK_POSITION_SHAPE = 0; // 동일한 블록 내에서의 각도 형태
+      ALL_BLOCK[0] = [
+        ["0:0", "1:0", "2:0", "3:0"],
+        ["0:0", "0:1", "0:2", "0:3"],
+      ];
+      ALL_BLOCK[1] = [
+        ["0:0", "0:1", "1:1"],
+        ["0:1", "0:0", "1:0"],
+        ["0:0", "1:0", "1:1"],
+        ["1:0", "0:1", "1:1"],
+      ];
+      ALL_BLOCK[2] = [
+        ["0:1", "1:1", "1:0"],
+        ["0:-1", "0:0", "1:0"],
+        ["0:1", "0:0", "1:0"],
+        ["0:-1", "1:-1", "1:0"],
+      ];
+      ALL_BLOCK[3] = [
+        ["0:1", "1:1", "2:1", "0:0"],
+        ["0:1", "0:0", "0:-1", "1:-1"],
+        ["0:-2", "1:-2", "2:-2", "2:-1"],
+        ["0:0", "0:1", "-1:2", "0:2"],
+      ];
+      ALL_BLOCK[4] = [
+        ["0:1", "1:1", "2:1", "2:0"],
+        ["1:-1", "1:0", "1:1", "2:1"],
+        ["-1:1", "-1:0", "0:0", "1:0"],
+        ["0:-1", "1:-1", "1:0", "1:1"],
+      ];
+      ALL_BLOCK[5] = [["1:1", "2:1", "1:0", "2:0"]];
+
+      function makeBlock(col, row) {
+        for (let i = 1; i <= row; i++) {
+          // 세로
+          document.write("<tr>");
+          for (let j = 1; j <= col; j++) {
+            // 가로
+            const block_html = `
+              <td class="space" id="${j}_${i}" x="${j}" y="${i}">
+              </td>
+            `;
+            document.write(block_html);
+          }
+          document.write("</tr>");
+        }
+      }
+
+      function moveBlock(kiba) {
+        const is_stop = false;
+        if (is_stop == true) {
+          // 막힌 길이니 중단해야 합니다.
+          return false;
+        }
+        if (NOW_BLOCK) {
+          // 오른쪽
+          if (kiba == "RIGHT") {
+            // 배열형태의 변수 생성
+            const new_current_blocks = [];
+
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              // item = td
+              // 새로운 x y 좌표 완성
+              const new_id = Number(item.attr("x")) + 1 + "_" + item.attr("y");
+              new_current_blocks.push($("#" + new_id));
+              // html 객체가 더이상 존재하지 않을 경우
+              if ($("#" + new_id).length == 0) {
+                is_stop = true;
+              }
+            });
+
+            // 기존 블록 보이지 않게 설정하기
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              item.attr("class", "space");
+            });
+
+            // 새로운 블록 보이게 설정하기
+            new_current_blocks.forEach(function (item, index) {
+              item.attr("class", "block");
+            });
+
+            NOW_BLOCK.current_blocks = new_current_blocks;
+          }
+          // 왼쪽
+          else if (kiba == "LEFT") {
+            // 배열형태의 변수 생성
+            const new_current_blocks = [];
+
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              // item = td
+              // 새로운 x y 좌표 완성
+              const new_id = Number(item.attr("x")) - 1 + "_" + item.attr("y");
+              // html 객체가 더이상 존재하지 않을 경우
+              if ($("#" + new_id).length == 0) {
+                is_stop = true;
+              }
+              new_current_blocks.push($("#" + new_id));
+            });
+
+            // 기존 블록 보이지 않게 설정하기
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              item.attr("class", "space");
+            });
+
+            // 새로운 블록 보이게 설정하기
+            new_current_blocks.forEach(function (item, index) {
+              item.attr("class", "block");
+            });
+
+            NOW_BLOCK.current_blocks = new_current_blocks;
+          }
+          // 아래
+          else if (kiba == "DOWN") {
+            // 배열형태의 변수 생성
+            const new_current_blocks = [];
+
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              // item = td
+              // 새로운 x y 좌표 완성
+              const new_id =
+                item.attr("x") + "_" + (Number(item.attr("y")) + 1);
+              // html 객체가 더이상 존재하지 않을 경우
+              if ($("#" + new_id).length == 0) {
+                is_stop = true;
+              }
+              new_current_blocks.push($("#" + new_id));
+            });
+
+            // 기존 블록 보이지 않게 설정하기
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              item.attr("class", "space");
+            });
+
+            // 새로운 블록 보이게 설정하기
+            new_current_blocks.forEach(function (item, index) {
+              item.attr("class", "block");
+            });
+
+            NOW_BLOCK.current_blocks = new_current_blocks;
+          }
+          // 블록 모양 변경
+          else if (kiba == "UP") {
+            // 배열형태의 변수 생성
+            const new_current_blocks = [];
+
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              // item = td
+              // 새로운 x y 좌표 완성
+              const new_id = Number(item.attr("x")) + 1 + "_" + item.attr("y");
+              new_current_blocks.push($("#" + new_id));
+              // html 객체가 더이상 존재하지 않을 경우
+              if ($("#" + new_id).length == 0) {
+                is_stop = true;
+              }
+            });
+
+            // 기존 블록 보이지 않게 설정하기
+            NOW_BLOCK.current_blocks.forEach(function (item, index) {
+              item.attr("class", "space");
+            });
+
+            // 새로운 블록 보이게 설정하기
+            new_current_blocks.forEach(function (item, index) {
+              item.attr("class", "block");
+            });
+
+            NOW_BLOCK.current_blocks = new_current_blocks;
+          }
+        }
+      }
+
+      var NOW_BLOCK = new Object();
+      NOW_BLOCK.shape = null; // 현재 블록 형태
+      NOW_BLOCK.current_blocks = null; // 현재 블록의 위치를 저장하는 곳
+      $(document).ready(function () {
+        // 메모리 적재 시기에 이어지는 작업을 실행하기
+        newBlock();
+
+        $(document).keydown(function (e) {
+          // alert(e.which) 를 이용해서 무슨 키를 눌렀는지 확인할 수 있음
+          if (e.which == 38) {
+            // 방향키 위
+            moveBlock("UP");
+          } else if (e.which == 39) {
+            // 방향키 오른쪽
+            moveBlock("RIGHT");
+          } else if (e.which == 37) {
+            // 방향키 왼쪽
+            moveBlock("LEFT");
+          } else if (e.which == 40) {
+            // 방향키 아래쪽
+            moveBlock("DOWN");
+          } else if (e.which == 32) {
+            // 스페이스바
+            moveBlock("SPACEBAR");
+          }
+        });
+      });
+
+      //랜덤숫자 생성
+      function rand(min, max) {
+        // Math.random() : 0~1사이의 숫자를 랜덤하게 가지고 오는 자바스크립트 함수
+        // Math.floor : 소수점 자리를 버려서 정수로 만듬
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function newBlock() {
+        // 랜덤하게 가져오기
+        BLOCK_POSITION_SHAPE = 0;
+        NOW_BLOCK.shape = rand(0, ALL_BLOCK.length - 1);
+        console.log(NOW_BLOCK.shpae);
+        NOW_BLOCK.current_blocks = displayBlock(NOW_BLOCK);
+      }
+
+      const INIT_X_POSITION = 5; // 초기 블록의 x 위치값
+      const INIT_Y_POSITION = 1; // 초기 블록의 y 위치값
+
+      function displayBlock(nowblock) {
+        // 원하는 블록(=nowblock)을 원하는 위치에 출력하는 것
+        const current_blocks = [];
+        // ALL_BLOCK[nowblock.shape]
+        console.log(ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE].length);
+        for (
+          let i = 0;
+          i < ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE].length;
+          i++
+        ) {
+          // ALL_BLOCK[nowblock.shape][0] -> "0:0"
+          const block_xy =
+            ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE][i].split(":");
+          // 문자열을 숫자로 바꾸어주는 과정이 필요합니다.
+          const block_x = Number(block_xy[0]) + INIT_X_POSITION;
+          const block_y = Number(block_xy[1]) + INIT_Y_POSITION;
+
+          $("#" + block_x + "_" + block_y).attr("class", "block");
+          current_blocks.push($("#" + block_x + "_" + block_y));
+        }
+        return current_blocks;
+      }
+    </script>
+  </head>
+  <body>
+    <div
+      style="width: 509px; height: 550px; margin: 0px auto; margin-top: 50px"
+    >
+      <div
+        style="height: 550px; border: 2px solid hsl(30, 0%, 80%); float: left"
+      >
+        <!-- 가로 x 세로 : 22  x 12 -->
+        <table
+          cellspacing="0"
+          cellpadding="0"
+          style="width: 300px"
+          align="center"
+        >
+          <script>
+            makeBlock(12, 22);
+          </script>
+        </table>
+      </div>
+      <div
+        style="
+          width: 200px;
+          height: 550px;
+          background-color: white;
+          float: left;
+          margin-top: 250px;
+        "
+      >
+        <div style="text-align: center; font-weight: bold; font-size: 26px">
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+            "
+          >
+            <div class="up">⬆️</div>
+            <div style="font-size: 12px; line-height: 35px">모양변경</div>
+          </div>
+          <div style="display: flex; justify-content: center">
+            <div class="left">⬅️</div>
+            <div class="down">⬇️</div>
+            <div class="right">➡️</div>
+          </div>
+          <div style="font-size: 12px; margin-top: 13px">
+            스페이스바(내리기)
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
