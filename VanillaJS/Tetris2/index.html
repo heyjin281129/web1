@@ -9,13 +9,42 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="game-text">
+        <div class="text">✨미니 테트리스 게임✨</div>
+        <div class="game-start">
             <span>게임시작</span>
             <button>시작하기</button>
         </div>
-        <div class="score">0</div>
-        <div class="playground">
-            <ul></ul>
+        <div class="game-text" style="display: none;">
+            <span>게임종료</span>
+            <button>다시시작</button>
+        </div>
+        <div class="contents">
+            <div class="content-right">
+                <div class="playground">
+                    <ul></ul>
+                </div>
+            </div>
+            <div class="contents-right">
+                <div class="bestscore-text">
+                    <span>BEST SCORE</span>
+                    <div class="best-score">0</div>
+                </div>
+                <div class="next-block">
+                    <span>NEXT BLOCK</span>
+                    <div class="block"></div>
+                </div>
+                <div class="score-text">
+                    <span>SCORE</span>
+                    <div class="score">0</div>
+                </div>
+                <div class="happy-img">
+                    <img src="img/HappyImage.png">
+                </div>
+                <div class="angry-img" style="display: none;">
+                    <img src="img/AngryImage.png">
+                </div>
+                
+            </div>
         </div>
     </div>
     <script src="js/tetris.js" type="module"></script>

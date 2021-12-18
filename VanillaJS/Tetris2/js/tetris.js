@@ -2,8 +2,10 @@ import BLOCKS from "./blocks.js";
 
 // DOM 선언
 const playground = document.querySelector(".playground > ul");
+const gameStart = document.querySelector(".game-start");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
+const startButton = document.querySelector(".game-start > button");
 const restartButton = document.querySelector(".game-text > button");
 
 // Setting 선언
@@ -29,7 +31,7 @@ const movingItem = {
 
 };
 
-init();
+
 
 // 게임실행 function
 function init(){
@@ -118,6 +120,7 @@ function checkMatch(){
             prependNewLine();
             score ++;
             scoreDisplay.innerHTML=score;
+            
         }
     })
 
@@ -198,6 +201,12 @@ document.addEventListener("keydown", e=>{
             break;
     }
     // console.log(e);
+})
+
+startButton.addEventListener("click",()=>{
+    playground.innerHTML = "";
+    gameStart.style.display = "none";
+    init();
 })
 
 restartButton.addEventListener("click",()=>{
