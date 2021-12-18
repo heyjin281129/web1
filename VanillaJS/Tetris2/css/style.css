@@ -82,11 +82,6 @@ body{
     background-color:#c1dd45;
 }
 
-.score{
-    text-align: center;
-    font-size:36px;
-    margin-bottom: 2rem;
-}
 
 .contents{
     display: flex;
@@ -116,11 +111,43 @@ body{
 
 .contents-right{
     margin-left:20px;
+    display: flex;
+    flex-direction: column;
 }
 
+.bestscore-text{
+    text-align: center;
+    font-size:36px;
+    margin-top:1rem;
+}
+.bestscore-text > span{
+    text-align: center;
+    font-size:18px;
+    color:#cfad3d;
+}
+
+.score-text{
+    text-align: center;
+    font-size:18px;
+    margin-top:2rem;
+}
+.score{
+    text-align: center;
+    font-size:36px;
+    margin-bottom: 2rem;
+}
+
+.next-block{
+    margin-top:2rem;
+    text-align: center;
+}
 .next-block > span{
+    font-size:18px;
+    text-align: center;
 
 }
+
+
 
 .happy-img{
     width:100px;

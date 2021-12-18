@@ -5,6 +5,7 @@ const playground = document.querySelector(".playground > ul");
 const gameStart = document.querySelector(".game-start");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
+const bestScoreDisplay = document.querySelector(".best-score");
 const startButton = document.querySelector(".game-start > button");
 const restartButton = document.querySelector(".game-text > button");
 
@@ -19,6 +20,8 @@ let duration = 500;
 let downInterval;
 let tempMovingItem;
 
+const BEST_SCORE = "bestscore";
+
 
 const movingItem = {
     type: "tree",
@@ -28,8 +31,9 @@ const movingItem = {
     top: 0,
     // 좌우 값
     left: 3,
-
+    
 };
+
 
 
 // 게임실행 function
@@ -39,6 +43,11 @@ function init(){
         prependNewLine();
     }
     generateNewBlock();
+}
+// score 저장
+function saveScore(){
+    localStorage.setItem(BEST_SCORE, JSON.stringify(score));
+    showGameoverText();
 }
 
 // 테트리스 게임 배경
@@ -74,7 +83,7 @@ function renderBlocks(moveType=""){
             tempMovingItem = { ...movingItem };
             if(moveType === 'retry'){
                 clearInterval(downInterval);
-                showGameoverText();
+                saveScore();
             }
             // setTimeout으로 이벤트들이 다 실행된 후에 실행될 수 있도록 하기
             // 사용하지 않으면 에러가 발생합니다.
@@ -119,6 +128,11 @@ function checkMatch(){
             prependNewLine();
             score ++;
             scoreDisplay.innerHTML=score;
+            if(bestScore>score){
+                bestScore=score;
+                bestScoreDisplay.innerHTML=score;
+            }
+            
         }
     })
 
