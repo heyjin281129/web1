@@ -11,14 +11,14 @@ export class Ball{
     }
 
     // 캔버스에 그림그리기
-    draw(ctx, stageWidth, stageHeight){
+    draw(ctx, stageWidth, stageHeight, block){
         this.x += this.vx;
         this.y += this.vy;
 
         this.bounceWindow(stageWidth, stageHeight);
 
         // 벽에 닿으면 튕기게 하기
-        // this.bounceBlock(block);
+        this.bounceBlock(block);
 
         ctx.fillStyle = "#fdd700";
         ctx.beginPath();
@@ -43,33 +43,33 @@ export class Ball{
 
 
     bounceBlock(block){
-        console.log("블럭오류인가요?");
-        // const minX = block.x - this.radius;
-        // const maxX = block.maxX + this.radius;
-        // const minY = block.y - this.radius;
-        // const maxY = block.max + this.radius;
+        console.log(`block.y : ${block.y}`);
+        const minX = block.x - this.radius;
+        const maxX = block.maxX + this.radius;
+        const minY = block.y - this.radius;
+        const maxY = block.maxY + this.radius;
 
-        // if(this.x > minX && this.x < maxX && this.y < minY && this.y < maxY){
-        //     console.log("들어가지나요?");
-        //     const x1 = Math.abs(minX - this.x);
-        //     const x2 = Math.abs(this.x - maxX );
-        //     const y1 = Math.abs(minY - this.y);
-        //     const y2 = Math.abs(this.y - maxY);
-        //     const min1 = Math.min(x1, x2);
-        //     const min2 = Math.min(y1, y2);
-        //     const min = Math.min(min1, min2);
+        if(this.x > minX && this.x < maxX && this.y > minY && this.y < maxY){
+            console.log("들어가지나요?");
+            const x1 = Math.abs(minX - this.x);
+            const x2 = Math.abs(this.x - maxX );
+            const y1 = Math.abs(minY - this.y);
+            const y2 = Math.abs(this.y - maxY);
+            const min1 = Math.min(x1, x2);
+            const min2 = Math.min(y1, y2);
+            const min = Math.min(min1, min2);
 
-        //     if(min == min1){
-        //         this.vx *= -1;
-        //     console.log(this.vx);
+            if(min == min1){
+                this.vx *= -1;
+                 console.log(this.vx);
 
-        //         this.x += this.vs;
-        //     }else if(min == min2){
-        //         this.vy *= -1;
-        //     console.log(this.vy);
+                this.x += this.vs;
+            }else if(min == min2){
+                this.vy *= -1;
+                 console.log(this.vy);
 
-        //         this.y += this.vy;
-        //     }
-        // }
+                this.y += this.vy;
+            }
+        }
     }
 }
